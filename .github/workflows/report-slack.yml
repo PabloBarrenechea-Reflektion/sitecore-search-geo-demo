@@ -1,6 +1,7 @@
   name: Post to a Slack channel
   on:
-    push:
+    pull_request:
+      types: [ closed ]
       branches:
         - main
   jobs:
@@ -13,13 +14,14 @@
             channel-id: '#sdk-notifications'
             payload: |
               {
-                "text": "[sitecore-search] Release v1.2.0-alpha.1 (prerelease)",
+                "text": "*${{github.event.pull_request.title}}*",
+                
                 "blocks": [
                   {
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "*[sitecore-search] Release v1.2.0-alpha.1 (prerelease)*"
+                      "text": "*${{github.event.pull_request.title}}*",
                     }
                   },
                   {"type" : "divider"},
@@ -27,7 +29,7 @@
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "🚀*Features*\n- #423 #422: Added apse2 to allowed environments @PabloBarrenechea-Reflektion\n\n 🐛*Fixes*\n- #416 Fixes circular dependencies @InakiAbete-Reflektion\n- #415 Reset offset and page in search result widget @NuriaSuarez-Reflektion\n- #418 Fixes un-listened query context @InakiAbete-Reflektion"
+                      "text": "${{ github.event.pull_request.body }}"
                     }
                   }
                 ]
