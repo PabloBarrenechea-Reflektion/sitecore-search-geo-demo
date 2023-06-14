@@ -8,10 +8,9 @@
       runs-on: ubuntu-latest
       steps:
         - name: Send Slack notification
-          uses: rtCamp/action-slack-notify@v2
+          uses: slackapi/slack-github-action@v1.24.0
+          with:
+            channel-id: '#sdk-notifications'
+            slack-message: 'GitHub Action completed successfully!'
           env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_BOT_TOKEN }}
-            with:
-              args: |
-                --channel: '#sdk-notifications"'
-                --message: 'GitHub Action completed successfully!'
