@@ -29,7 +29,7 @@
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${{ github.event.pull_request.body }}"
+                      "text": "${{github.event.pull_request.body}}"
                     }
                   }
                 ]
