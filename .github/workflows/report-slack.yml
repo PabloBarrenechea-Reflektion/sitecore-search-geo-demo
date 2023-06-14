@@ -13,14 +13,7 @@
             channel-id: '#sdk-notifications'
             payload: |
               {
-                "text": "## 🚀 Features
-                     - #423 #422: Added apse2 to allowed environments @PabloBarrenechea-Reflektion
-                       
-                     ## 🐛 Fixes
-                     - #416 Fixes circular dependencies @InakiAbete-Reflektion
-                     - #415 Reset offset and page in search result widget @NuriaSuarez-Reflektion
-                     - #418 Fixes un-listened query context @InakiAbete-Reflektion
-                    ",
+                "text": "## 🚀 Features\n- #423 #422: Added apse2 to allowed environments @PabloBarrenechea-Reflektion\n\n## 🐛 Fixes\n- #416 Fixes circular dependencies @InakiAbete-Reflektion\n- #415 Reset offset and page in search result widget @NuriaSuarez-Reflektion\n- #418 Fixes un-listened query context @InakiAbete-Reflektion",
                 "blocks": [
                   {
                     "type": "section",
