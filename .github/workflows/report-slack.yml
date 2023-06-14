@@ -36,7 +36,7 @@
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${{ steps.prepare_description.outputs.result }}"
+                      "text": ${{ steps.prepare_description.outputs.result }}
                     }
                   }
                 ]
