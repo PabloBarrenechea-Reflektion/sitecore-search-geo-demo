@@ -12,5 +12,6 @@
           env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_BOT_TOKEN }}
             with:
-              channel: "#sdk-notifications"
-              message: "GitHub Action completed successfully!"
+              args: |
+                --channel: '#sdk-notifications"'
+                --message: 'GitHub Action completed successfully!'
