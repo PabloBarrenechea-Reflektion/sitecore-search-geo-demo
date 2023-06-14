@@ -11,9 +11,10 @@
         - name: Prepare description
           id: prepare_description
           uses: actions/github-script@v3
-          script: |
-            const description = `${{ github.event.pull_request.body }}`;
-            return description.replace(/\n/g, '\\\\n');
+          with:
+            script: |
+              const description = `${{ github.event.pull_request.body }}`;
+              return description.replace(/\n/g, '\\\\n');
         - name: Send Slack notification
           uses: slackapi/slack-github-action@v1.24.0
           with:
