@@ -14,7 +14,6 @@
           script: |
             const description = `${{ github.event.pull_request.body }}`;
             return description.replace(/\n/g, '\\\\n');
-          run: echo "SLACK_MESSAGE=$(echo ${{ github.event.pull_request.body }})" >> $SLACK_DESCRIPTION
         - name: Send Slack notification
           uses: slackapi/slack-github-action@v1.24.0
           with:
