@@ -6,11 +6,11 @@
   jobs:
     post-slack:
       runs-on: ubuntu-latest
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_BOT_TOKEN }}
       steps:
         - name: Send Slack notification
           uses: slackapi/slack-github-action@v1.24.0
           with:
             channel-id: '#sdk-notifications'
             slack-message: 'GitHub Action completed successfully!'
-          env:
-            SLACK_WEBHOOK: ${{ secrets.SLACK_BOT_TOKEN }}
