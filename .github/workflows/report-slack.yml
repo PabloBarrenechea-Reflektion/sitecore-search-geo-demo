@@ -17,9 +17,9 @@
                 "blocks": [
                   {
                     "type": "section",
-                    "title": {
-                      "type": "plain_text",
-                      "text": "[sitecore-search] Release v1.2.0-alpha.1 (prerelease)"
+                    "text": {
+                      "type": "mrdwn",
+                      "text": "*[sitecore-search] Release v1.2.0-alpha.1 (prerelease)*"
                     }
                   },
                   {"type" : "divider"},
