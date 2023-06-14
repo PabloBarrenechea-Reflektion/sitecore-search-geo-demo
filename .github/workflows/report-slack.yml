@@ -14,7 +14,7 @@
           with:
             script: |
               const description = `${{ github.event.pull_request.body }}`;
-              return description.replace(/##/g, '*');
+              return description.replace(/##/g, '').replace("Features", "*Features*").replace("Fixes", "*Fixes*").replace(/#(\d+)/g, "<https://github.com/Reflektion/rfk-sdk/issues/$1|#$1>");
         - name: Send Slack notification
           uses: slackapi/slack-github-action@v1.24.0
           with:
