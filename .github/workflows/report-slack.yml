@@ -13,6 +13,7 @@
             channel-id: '#sdk-notifications'
             payload: |
               {
+                "text": "",
                 "blocks": [
                   {
                     "type": "section",
