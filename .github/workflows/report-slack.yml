@@ -8,6 +8,13 @@
     post-slack:
       runs-on: ubuntu-latest
       steps:
+        - name: Prepare description
+          id: prepare_description
+          uses: actions/github-script@v3
+          script: |
+            const description = `${{ github.event.pull_request.body }}`;
+            return description.replace(/\n/g, '\\\\n');
+          run: echo "SLACK_MESSAGE=$(echo ${{ github.event.pull_request.body }})" >> $SLACK_DESCRIPTION
         - name: Send Slack notification
           uses: slackapi/slack-github-action@v1.24.0
           with:
@@ -21,7 +28,7 @@
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "*${{github.event.pull_request.title}}*",
+                      "text": "*${{github.event.pull_request.title}}*"
                     }
                   },
                   {"type" : "divider"},
@@ -29,11 +36,10 @@
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${{github.event.pull_request.body}}"
+                      "text": "${{ steps.prepare_description.outputs.result }}"
                     }
                   }
                 ]
               }
           env:
             SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-            #SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
