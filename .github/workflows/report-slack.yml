@@ -10,7 +10,7 @@
         - name: Send Slack notification
           uses: slackapi/slack-github-action@v1.24.0
           with:
-            channel-id: '#sdk-notifications'
+            channel-id: '#sdk-notifications,#rfk-sdk-development'
             payload: |
               {
                 "text": "## 🚀 Features\n- #423 #422: Added apse2 to allowed environments @PabloBarrenechea-Reflektion\n\n## 🐛 Fixes\n- #416 Fixes circular dependencies @InakiAbete-Reflektion\n- #415 Reset offset and page in search result widget @NuriaSuarez-Reflektion\n- #418 Fixes un-listened query context @InakiAbete-Reflektion",
@@ -19,7 +19,7 @@
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                      "text": "## 🚀 Features\n- #423 #422: Added apse2 to allowed environments @PabloBarrenechea-Reflektion\n\n## 🐛 Fixes\n- #416 Fixes circular dependencies @InakiAbete-Reflektion\n- #415 Reset offset and page in search result widget @NuriaSuarez-Reflektion\n- #418 Fixes un-listened query context @InakiAbete-Reflektion"
                     }
                   }
                 ]
