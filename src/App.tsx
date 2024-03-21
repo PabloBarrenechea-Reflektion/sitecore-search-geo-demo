@@ -23,7 +23,6 @@ function App() {
               env={DISCOVER_CONFIG.env}
               customerKey={DISCOVER_CONFIG.customerKey}
               apiKey={DISCOVER_CONFIG.apiKey}
-              useToken
               publicSuffix={true}
           >
               <GeoSearchResultsWidget rfkId={"rfkid_7"} defaultLat={lat} defaultLon={lon} />
