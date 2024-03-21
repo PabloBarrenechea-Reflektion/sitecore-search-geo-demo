@@ -1,6 +1,6 @@
 import { ArrowLeftIcon, ArrowRightIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { debounce } from '@sitecore-search/common';
-import type { SearchResultsStoreState } from '@sitecore-search/react';
+import type {SearchResultsInitialState, SearchResultsStoreState} from '@sitecore-search/react';
 import {WidgetDataType, useSearchResults, widget, FilterGeo} from '@sitecore-search/react';
 import { Pagination, Presence } from '@sitecore-search/ui';
 
@@ -43,6 +43,8 @@ type ArticlesSearchResultsProps = {
   defaultLon?: number;
 };
 
+type InitialState = SearchResultsInitialState<'itemsPerPage' | 'keyphrase' | 'page' | 'sortType'>;
+
 export const GeoSearchResults = ({
   defaultSortType = 'featured_desc',
   defaultPage = 1,
@@ -66,7 +68,7 @@ export const GeoSearchResults = ({
       onItemClick,
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    context: { sortType = defaultSortType, page = defaultPage, itemsPerPage = defaultItemsPerPage },
+    state: { sortType = defaultSortType, page = defaultPage, itemsPerPage = defaultItemsPerPage },
     queryResult: {
       isFetching,
       isLoading,
@@ -78,13 +80,13 @@ export const GeoSearchResults = ({
       } = {},
     },
     query,
-  } = useSearchResults<ArticleModel>(() => {
-    return {
+  } = useSearchResults<ArticleModel, InitialState>({
+    state: {
       sortType: defaultSortType,
       page: defaultPage,
       itemsPerPage: defaultItemsPerPage,
       keyphrase: defaultKeyphrase,
-    };
+    }
   });
   const totalPages = Math.floor(totalItems / limit);
   const keyphraseChangeFn = debounce((e) => {
@@ -97,8 +99,8 @@ export const GeoSearchResults = ({
     };
   };
   const refreshGeo = () => {
-    geoFilter.setLat(geoValues.lat);
-    geoFilter.setLon(geoValues.lon);
+    geoFilter.setLat(Number(geoValues.lat));
+    geoFilter.setLon(Number(geoValues.lon));
     geoFilter.setDistance(geoValues.distance);
     query.getRequest().resetSearchFilter().setSearchFilter(geoFilter);
   };
